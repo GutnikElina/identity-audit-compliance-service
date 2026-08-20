@@ -1,0 +1,49 @@
+{
+  "realm": "logistics-platform",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "DISPATCHER",
+        "description": "Internal Dispatcher Role"
+      },
+      {
+        "name": "WAREHOUSE_OPERATOR",
+        "description": "Warehouse Operator Role"
+      },
+      {
+        "name": "CARRIER",
+        "description": "External Carrier Role"
+      }
+    ],
+    "client": {
+      "identity-audit-compliance-service": [
+        {
+          "name": "AUDIT_LOG_READER",
+          "description": "Can query audit search API"
+        },
+        {
+          "name": "ABAC_ADMIN",
+          "description": "Can manage AccessPolicy records"
+        },
+        {
+          "name": "SERVICE_ACCOUNT",
+          "description": "Used by other microservices calling EvaluateAccess"
+        }
+      ]
+    }
+  },
+  "clients": [
+    {
+      "clientId": "identity-audit-compliance-service",
+      "enabled": true,
+      "publicClient": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": true,
+      "authorizationServicesEnabled": true,
+      "redirectUris": [ "http://localhost:8081/*" ],
+      "webOrigins": [ "+" ]
+    }
+  ]
+}
