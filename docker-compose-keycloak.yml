@@ -1,8 +1,7 @@
 # Usage:
 #   1. Make sure infra is up and Keycloak is healthy
-#   2. Copy .env.example to .env here and set KC_IDENTITY_SERVICE_CLIENT_SECRET
-#   3. Run:  docker compose -f docker-compose-keycloak.yml up --exit-code-from keycloak-config
-#   4. Clean up the finished container:  docker compose -f docker-compose-keycloak.yml down
+#   2. Run:  docker compose -f docker-compose-keycloak.yml up --exit-code-from keycloak-config
+#   3. Clean up the finished container:  docker compose -f docker-compose-keycloak.yml down
 
 name: identity-audit-compliance-service-keycloak-bootstrap
 
