@@ -42,8 +42,8 @@
       "serviceAccountsEnabled": true,
       "standardFlowEnabled": true,
       "authorizationServicesEnabled": true,
-      "redirectUris": [ "http://localhost:8081/*" ],
-      "webOrigins": [ "+" ]
+      "redirectUris": [],
+      "webOrigins": []
     }
   ]
 }
