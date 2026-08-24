@@ -4,3 +4,28 @@ server:
 spring:
   application:
     name: identity-audit-compliance-service
+  threads:
+    virtual:
+      enabled: true
+  datasource:
+    clickhouse:
+      url: jdbc:clickhouse://${CLICKHOUSE_HOST:localhost}:${CLICKHOUSE_PORT:8123}/${CLICKHOUSE_DB:audit_db}
+      username: ${CLICKHOUSE_USER:audit_user}
+      password: ${CLICKHOUSE_PASSWORD:audit_password}
+      driver-class-name: com.clickhouse.jdbc.ClickHouseDriver
+
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: identity-audit-group
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+      max-poll-records: 5000
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+      properties:
+        fetch.min.bytes: 1048576
+        fetch.max.wait.ms: 2000
+        schema.registry.url: ${SCHEMA_REGISTRY_URL:http://localhost:8081}
+        specific.avro.reader: true

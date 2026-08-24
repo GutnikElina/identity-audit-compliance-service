@@ -1,0 +1,18 @@
+{
+  "type": "record",
+  "name": "SystemAuditEventAvro",
+  "namespace": "com.innowise.identity_audit_compliance_service.audit.infrastructure.kafka.avro",
+  "fields": [
+    {"name": "event_id", "type": "string"},
+    {"name": "timestamp", "type": "long"},
+    {"name": "actor_id", "type": "string"},
+    {"name": "actor_role", "type": "string"},
+    {"name": "action", "type": "string"},
+    {"name": "resource_type", "type": "string"},
+    {"name": "resource_id", "type": "string"},
+    {"name": "ip_address", "type": "string"},
+    {"name": "before_state", "type": ["null", "string"], "default": null},
+    {"name": "after_state", "type": ["null", "string"], "default": null},
+    {"name": "crypto_hash", "type": "string"}
+  ]
+}
