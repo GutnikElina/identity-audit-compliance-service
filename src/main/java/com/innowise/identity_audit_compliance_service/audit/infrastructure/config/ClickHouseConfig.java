@@ -1,29 +1,30 @@
 package com.innowise.identity_audit_compliance_service.audit.infrastructure.config;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
 
 @Configuration
 public class ClickHouseConfig {
 
-    @Bean(name = "clickHouseDataSource")
-    public DataSource clickHouseDataSource(
+    @Bean
+    public DataSource dataSource(
             @Value("${spring.datasource.clickhouse.url}") String url,
             @Value("${spring.datasource.clickhouse.username}") String username,
-            @Value("${spring.datasource.clickhouse.password}") String password,
-            @Value("${spring.datasource.clickhouse.driver-class-name}") String driver) {
+            @Value("${spring.datasource.clickhouse.password}") String password) {
 
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        return dataSource;
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(url);
+        config.setUsername(username);
+        config.setPassword(password);
+        config.setMaximumPoolSize(20);
+        config.setMinimumIdle(5);
+        return new HikariDataSource(config);
     }
 
     @Bean(name = "clickHouseJdbcTemplate")
