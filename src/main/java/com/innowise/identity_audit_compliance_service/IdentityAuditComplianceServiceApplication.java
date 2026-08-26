@@ -3,11 +3,20 @@ package com.innowise.identity_audit_compliance_service;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
-public class IdentityAuditComplianceServiceApplication {
+@SpringBootApplication(proxyBeanMethods = false)
+public final class IdentityAuditComplianceServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(IdentityAuditComplianceServiceApplication.class, args);
-	}
+  /**
+   * Main method to start the Spring Boot application.
+   *
+   * @param args command line arguments
+   */
+  public static void main(final String[] args) {
+    Class<?> appClass = IdentityAuditComplianceServiceApplication.class;
+    SpringApplication.run(appClass, args);
+  }
 
+  private IdentityAuditComplianceServiceApplication() {
+    super();
+  }
 }
