@@ -11,23 +11,22 @@ import org.springframework.jdbc.core.JdbcTemplate;
 @Configuration
 public class ClickHouseConfig {
 
-  @Bean
-  public DataSource dataSource(
-      @Value("${spring.datasource.clickhouse.url}") String url,
-      @Value("${spring.datasource.clickhouse.username}") String username,
-      @Value("${spring.datasource.clickhouse.password}") String password) {
+    @Bean
+    public DataSource dataSource(@Value("${spring.datasource.clickhouse.url}") String url,
+            @Value("${spring.datasource.clickhouse.username}") String username,
+            @Value("${spring.datasource.clickhouse.password}") String password) {
 
-    HikariConfig config = new HikariConfig();
-    config.setJdbcUrl(url);
-    config.setUsername(username);
-    config.setPassword(password);
-    config.setMaximumPoolSize(20);
-    config.setMinimumIdle(5);
-    return new HikariDataSource(config);
-  }
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(url);
+        config.setUsername(username);
+        config.setPassword(password);
+        config.setMaximumPoolSize(20);
+        config.setMinimumIdle(5);
+        return new HikariDataSource(config);
+    }
 
-  @Bean(name = "clickHouseJdbcTemplate")
-  public JdbcTemplate clickHouseJdbcTemplate(DataSource clickHouseDataSource) {
-    return new JdbcTemplate(clickHouseDataSource);
-  }
+    @Bean(name = "clickHouseJdbcTemplate")
+    public JdbcTemplate clickHouseJdbcTemplate(DataSource clickHouseDataSource) {
+        return new JdbcTemplate(clickHouseDataSource);
+    }
 }

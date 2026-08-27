@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class IngestAuditLogsService {
 
-  private final SaveAuditLogsPort saveAuditLogsPort;
+    private final SaveAuditLogsPort saveAuditLogsPort;
 
-  public void processAndSave(List<AuditEvent> events) {
-    if (events == null || events.isEmpty()) {
-      return;
+    public void processAndSave(List<AuditEvent> events) {
+        if (events == null || events.isEmpty()) {
+            return;
+        }
+        saveAuditLogsPort.saveBatch(events);
     }
-    saveAuditLogsPort.saveBatch(events);
-  }
 }

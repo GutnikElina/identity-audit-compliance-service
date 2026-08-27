@@ -8,15 +8,15 @@ import lombok.Value;
 @Value
 @Builder
 public class AuditEvent {
-  UUID eventId;
-  Instant timestamp;
-  UUID actorId;
-  String actorRole;
-  String action;
-  String resourceType;
-  String resourceId;
-  String ipAddress;
-  String beforeState;
-  String afterState;
-  String cryptoHash;
+    UUID eventId;
+    Instant timestamp;
+    UUID actorId;
+    String actorRole;
+    String action;
+    String resourceType;
+    String resourceId;
+    String ipAddress;
+    String beforeState;
+    String afterState;
+    String cryptoHash;
 }

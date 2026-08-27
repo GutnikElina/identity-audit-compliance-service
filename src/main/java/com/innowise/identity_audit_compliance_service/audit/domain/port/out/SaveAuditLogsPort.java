@@ -6,5 +6,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface SaveAuditLogsPort {
-  void saveBatch(List<AuditEvent> events);
+    void saveBatch(List<AuditEvent> events);
 }
