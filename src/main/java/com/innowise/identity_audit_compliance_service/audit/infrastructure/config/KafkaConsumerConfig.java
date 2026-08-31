@@ -34,7 +34,7 @@ public class KafkaConsumerConfig {
     var executor = new SimpleAsyncTaskExecutor("kafka-vt-");
     executor.setVirtualThreads(true);
 
-    var containerProperties =  factory.getContainerProperties();
+    var containerProperties = factory.getContainerProperties();
     containerProperties.setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
     containerProperties.setListenerTaskExecutor(executor);
 
