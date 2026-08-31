@@ -23,25 +23,25 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(kafkaProperties.buildConsumerProperties());
     }
 
-  @Bean
-  public ConcurrentKafkaListenerContainerFactory<String, SystemAuditEventAvro>
-      kafkaListenerContainerFactory(ConsumerFactory<String, SystemAuditEventAvro> consumerFactory) {
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, SystemAuditEventAvro> kafkaListenerContainerFactory(
+            ConsumerFactory<String, SystemAuditEventAvro> consumerFactory) {
 
-    var factory = new ConcurrentKafkaListenerContainerFactory<String, SystemAuditEventAvro>();
-    factory.setConsumerFactory(consumerFactory);
-    factory.setBatchListener(true);
+        var factory = new ConcurrentKafkaListenerContainerFactory<String, SystemAuditEventAvro>();
+        factory.setConsumerFactory(consumerFactory);
+        factory.setBatchListener(true);
 
-    var executor = new SimpleAsyncTaskExecutor("kafka-vt-");
-    executor.setVirtualThreads(true);
+        var executor = new SimpleAsyncTaskExecutor("kafka-vt-");
+        executor.setVirtualThreads(true);
 
-    var containerProperties = factory.getContainerProperties();
-    containerProperties.setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
-    containerProperties.setListenerTaskExecutor(executor);
+        var containerProperties = factory.getContainerProperties();
+        containerProperties.setAckMode(ContainerProperties.AckMode.MANUAL_IMMEDIATE);
+        containerProperties.setListenerTaskExecutor(executor);
 
-    DefaultErrorHandler errorHandler = new DefaultErrorHandler(new FixedBackOff(1000L, 3));
+        DefaultErrorHandler errorHandler = new DefaultErrorHandler(new FixedBackOff(1000L, 3));
 
-    factory.setCommonErrorHandler(errorHandler);
+        factory.setCommonErrorHandler(errorHandler);
 
-    return factory;
-  }
+        return factory;
+    }
 }
