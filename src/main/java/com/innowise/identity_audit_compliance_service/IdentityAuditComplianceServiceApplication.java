@@ -6,17 +6,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication(proxyBeanMethods = false)
 public final class IdentityAuditComplianceServiceApplication {
 
-  /**
-   * Main method to start the Spring Boot application.
-   *
-   * @param args command line arguments
-   */
-  public static void main(final String[] args) {
-    Class<?> appClass = IdentityAuditComplianceServiceApplication.class;
-    SpringApplication.run(appClass, args);
-  }
+    /**
+     * Main method to start the Spring Boot application.
+     *
+     * @param args
+     *            command line arguments
+     */
+    public static void main(final String[] args) {
+        Class<?> appClass = IdentityAuditComplianceServiceApplication.class;
+        SpringApplication.run(appClass, args);
+    }
 
-  private IdentityAuditComplianceServiceApplication() {
-    super();
-  }
+    private IdentityAuditComplianceServiceApplication() {
+        super();
+    }
 }
